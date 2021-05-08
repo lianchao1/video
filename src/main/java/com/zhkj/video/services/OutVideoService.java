@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.zhkj.video.model.Video;
 
-public interface VideoService extends OutVideoService{
+public interface OutVideoService {
 
 	static final String QUERY_100_NOT_DOS_SQL = "select * from video where status not in ('2','3','4') or status is null limit 100";
 	static final String QUERY_NOT_DOS_SQL = "select * from video where status not in ('2','3','4') or status is null";
@@ -24,10 +24,21 @@ public interface VideoService extends OutVideoService{
 	 */
 	List<Video> queryNotDos();
 	/**
+	 * 获取已处理的
+	 * @return
+	 */
+	List<Video> querySuccesss();
+	/**
 	 * 保存
 	 * @param video
 	 */
 	void update(Video video);
+	/**
+	 * 通过oldName获取
+	 * @param oldName
+	 * @return
+	 */
+	Video getByOldName(String oldName);
 	/**
 	 * 通过id获取
 	 * @param id

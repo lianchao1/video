@@ -21,18 +21,18 @@ public class VideoServiceImpl implements VideoService {
     private JdbcTemplate jdbcTemplate;
     
 	@Override
-	public List<Video> query100NotDones() {
-		return jdbcTemplate.query(VideoService.QUERY_100_NOT_DONES_SQL,new Object[0], new VideoRowMapper());
+	public List<Video> query100NotDos() {
+		return jdbcTemplate.query(VideoService.QUERY_100_NOT_DOS_SQL,new Object[0], new VideoRowMapper());
 	}
     
 	@Override
-	public List<Video> queryNotDones() {
-		return jdbcTemplate.query(VideoService.QUERY_NOT_DONES_SQL,new Object[0], new VideoRowMapper());
+	public List<Video> queryNotDos() {
+		return jdbcTemplate.query(VideoService.QUERY_NOT_DOS_SQL,new Object[0], new VideoRowMapper());
 	}
 
 	@Override
-	public List<Video> queryDones() {
-		return jdbcTemplate.query(VideoService.QUERY_DONES_SQL,new Object[0], new VideoRowMapper());
+	public List<Video> querySuccesss() {
+		return jdbcTemplate.query(VideoService.QUERY_SUCCESSSS_SQL,new Object[0], new VideoRowMapper());
 	}
 
 	@Override
@@ -43,8 +43,9 @@ public class VideoServiceImpl implements VideoService {
             @Override
             public void setValues(PreparedStatement preparedStatement) throws SQLException {
                 preparedStatement.setString(1, video.getNewName());
-                preparedStatement.setString(2, video.getStatus());
-                preparedStatement.setLong(3, video.getId());
+                preparedStatement.setLong(2, video.getDuringSecond());
+                preparedStatement.setString(3, video.getStatus());
+                preparedStatement.setLong(4, video.getId());
             }
         });
 	}
@@ -83,6 +84,7 @@ class VideoRowMapper implements RowMapper<Video> {
         video.setStatus(resultSet.getString("status"));
         video.setCreateTime(resultSet.getDate("create_time"));
         video.setUpdateTime(resultSet.getDate("update_time"));
+        video.setDuringSecond(resultSet.getLong("during_second"));
         return video;
     }
 }

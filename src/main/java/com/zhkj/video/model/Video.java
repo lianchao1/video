@@ -9,6 +9,7 @@ public class Video {
 	private String status;
 	private Date createTime;
 	private Date updateTime;
+	private Long duringSecond;
 	
 	public Long getId() {
 		return id;
@@ -46,4 +47,11 @@ public class Video {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	public Long getDuringSecond() {
+		return duringSecond;
+	}
+	public void setDuringSecond(Long duringSecond) {
+		this.duringSecond = duringSecond;
+	}
+	
 }

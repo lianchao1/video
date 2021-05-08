@@ -21,6 +21,9 @@ public class Config {
     @Value("${video.command.video}")
     private String videoCommand;
     
+    @Value("${video.env}")
+    private String env;
+    
 	public String getOldPath() {
 		return oldPath;
 	}
@@ -57,4 +60,10 @@ public class Config {
 	public void setVideoCommand(String videoCommand) {
 		this.videoCommand = videoCommand;
 	}
+	public String getEnv() {
+		return env;
+	}
+	public void setEnv(String env) {
+		this.env = env;
+	}	
 }

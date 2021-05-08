@@ -45,7 +45,7 @@ public class VideoCommand implements CommandLineRunner {
 
 	private void start() {
 		do {
-			List<Video> notDoneVideos = videoService.query100NotDones();
+			List<Video> notDoneVideos = videoService.query100NotDos();
 			if (notDoneVideos.size() == 0) {
 				try {
 					Thread.sleep(VideoCommand.EMPTY_DATA_SLEEP_TIME);
@@ -72,7 +72,10 @@ public class VideoCommand implements CommandLineRunner {
  * @author zj
  *
  */
-class MyRejectPolicy implements RejectedExecutionHandler{	
+class MyRejectPolicy implements RejectedExecutionHandler{
+	private final static Logger logger = LoggerFactory.getLogger(MyRejectPolicy.class);
+	private final static Long OUT_DATA_SLEEP_TIME = 30 * 60 * 1000l;
+	
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
     	if (r instanceof VideoDetailHandle) {
     		VideoDetailHandle handle = (VideoDetailHandle) r;
@@ -82,6 +85,12 @@ class MyRejectPolicy implements RejectedExecutionHandler{
     		// 修改nodo状态
     		video.setStatus(VideoStatus.NOT_DO);
 			videoService.update(video);
+			
+			try {
+				Thread.sleep(MyRejectPolicy.OUT_DATA_SLEEP_TIME);
+			} catch (InterruptedException e) {
+				logger.error("sleep interruptedException", e);
+			}
         }
     }
 }
