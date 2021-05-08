@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: zhkj-video
+  profiles:
+    active: dev
+ 
+logging:
+  config: classpath:log4j2.yml

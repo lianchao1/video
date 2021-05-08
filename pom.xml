@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.7.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.zhkj</groupId>
+	<artifactId>video</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>zhkj-video</name>
+
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.iron.base</groupId>
+			<artifactId>iron-base-svc</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-webmvc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.elasticsearch</groupId>
+					<artifactId>elasticsearch</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.elasticsearch.client</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.pulsar</groupId>
+					<artifactId>pulsar-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.redisson</groupId>
+					<artifactId>redisson</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-fileupload</groupId>
+					<artifactId>commons-fileupload</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.github.jsqlparser</groupId>
+					<artifactId>jsqlparser</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.curator</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>redis.clients</groupId>
+					<artifactId>jedis</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.tus.java.client</groupId>
+					<artifactId>tus-java-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.netty</groupId>
+					<artifactId>netty-all</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.alibaba</groupId>
+					<artifactId>fastjson</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson-parent</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+				</exclusion>
+				<exclusion>
+			 	 	<groupId>org.hibernate</groupId>
+			  		<artifactId>hibernate-core</artifactId>
+				</exclusion>
+				<exclusion>
+  					<groupId>org.hibernate</groupId>
+  					<artifactId>hibernate-ehcache</artifactId>
+				</exclusion>
+				<exclusion>
+    				<groupId>org.apache.logging.log4j</groupId>
+  					<artifactId>log4j-jul</artifactId>
+				</exclusion>
+				<exclusion>
+    				<groupId>org.slf4j</groupId>
+  					<artifactId>jul-to-slf4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+			 		<groupId>log4j</groupId>
+  					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+    				<groupId>javax.validation</groupId>
+    				<artifactId>validation-api</artifactId>
+				</exclusion>
+				<exclusion>
+				  	<groupId>org.apache.dubbo</groupId>
+  					<artifactId>dubbo-spring-boot-starter</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<!-- 使用了log4j2，就要将spring-boot-starter-logging排除 -->
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- 影响yml文件解析 -->
+		<dependency>
+		  	<groupId>com.fasterxml.jackson.core</groupId>
+		  	<artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+        <!-- 引入jdbc支持 -->
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		                
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
+
+	</dependencies>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>releases</id>
+			<url>https://devrepo-cn-east-2.devcloud.huaweicloud.com/01/nexus/content/repositories/054e217b508025b00fe5c01b4d2bad00_1_0/</url>
+		</snapshotRepository>
+		<repository>
+			<id>snapshots</id>
+			<url>https://devrepo-cn-east-2.devcloud.huaweicloud.com/01/nexus/content/repositories/054e217b508025b00fe5c01b4d2bad00_2_0/</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
