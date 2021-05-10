@@ -120,10 +120,10 @@ public class VideoDetailHandle implements Runnable {
 		
 		//错误流需要被消费掉
 		final BufferedReader es = new BufferedReader(new InputStreamReader(pro.getErrorStream()));
-		new Thread(new ConsumeStreamRunnable(es)).start();
+		VideoCommand.consumeStreamExecutor.execute(new ConsumeStreamRunnable(es));
 		//输入流需要被消费掉
 		final BufferedReader is = new BufferedReader(new InputStreamReader(pro.getInputStream()));
-		new Thread(new ConsumeStreamRunnable(is)).start();
+		VideoCommand.consumeStreamExecutor.execute(new ConsumeStreamRunnable(is));
 		
 		int code = pro.waitFor();
 //		if(code != 0) {//图片生成会报错，但成功生成图片的

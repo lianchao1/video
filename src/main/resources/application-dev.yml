@@ -24,6 +24,7 @@ video:
       video-name: index
       image-name: index
   env: window # linux
+  corePoolSize: 10
   command: 
     video: D:\video\videoCmd.bat
     image: D:\video\imageCmd.bat

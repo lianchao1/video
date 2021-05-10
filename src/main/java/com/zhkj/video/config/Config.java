@@ -20,6 +20,9 @@ public class Config {
     private String imageCommand;
     @Value("${video.command.video}")
     private String videoCommand;
+
+    @Value("${video.corePoolSize:10}")
+    private Integer corePoolSize;
     
     @Value("${video.env}")
     private String env;
@@ -65,5 +68,11 @@ public class Config {
 	}
 	public void setEnv(String env) {
 		this.env = env;
-	}	
+	}
+	public Integer getCorePoolSize() {
+		return corePoolSize;
+	}
+	public void setCorePoolSize(Integer corePoolSize) {
+		this.corePoolSize = corePoolSize;
+	}
 }

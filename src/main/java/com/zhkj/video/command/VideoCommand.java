@@ -18,6 +18,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import com.zhkj.video.config.Config;
 import com.zhkj.video.constant.Constant.VideoStatus;
 import com.zhkj.video.model.Video;
 import com.zhkj.video.services.VideoService;
@@ -31,14 +32,20 @@ public class VideoCommand implements CommandLineRunner {
 	private final static Long EMPTY_DATA_SLEEP_TIME = 10000l;
 	@Autowired
 	private VideoService videoService;
+	@Autowired
+	private Config config;
 	ExecutorService executor = null;
+	public static ExecutorService consumeStreamExecutor = null;
 
 	@Override
 	public void run(String... args) throws Exception {
 		ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNamePrefix("video-pool-").build();
-
-		executor = new ThreadPoolExecutor(10, 15, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1024),
+		executor = new ThreadPoolExecutor(config.getCorePoolSize(), config.getCorePoolSize(), 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(1024),
 				namedThreadFactory, new MyRejectPolicy());
+		
+		ThreadFactory consumeStreamNamedThreadFactory = new ThreadFactoryBuilder().setNamePrefix("video-consumeStream-pool-").build();
+		consumeStreamExecutor = new ThreadPoolExecutor(config.getCorePoolSize() * 2, config.getCorePoolSize() * 2, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(1024),
+				consumeStreamNamedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
 		new Thread(this::start, "startVideoThread").start();
 	}
