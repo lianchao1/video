@@ -11,7 +11,9 @@ dubbo:
     id: zhkj-video
     name: zhkj-video
   registry:
-    address: zookeeper://192.168.168.250:2181
+    address: zookeeper://127.0.0.1:2181
+  protocol: 
+    port: 22884
 
 video: 
   file: 
@@ -27,3 +29,5 @@ video:
     image: D:\video\imageCmd.bat
 #videoCmd.bat D:\test\ffmpeg -i "%1 " -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  "%2" 
 #imageCmd.bat D:\test\ffmpeg -i "%1 " -s 640x480  -ss 00:00:00 "%2" -vcodec mjpeg  -y
+#videoCmd.sh #!/bin/sh  ffmpeg -i $1 -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  $2 
+#imageCmd.sh #!/bin/sh  ffmpeg -i $1 -s 640x480  -ss 00:00:00 $2 -vcodec mjpeg  -y

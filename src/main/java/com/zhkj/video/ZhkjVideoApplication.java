@@ -6,10 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-
 import com.iron.base.utils.ApplicationContextUtil;
 
+//dubbo相关
 //@EnableDubbo
+//@ImportResource("classpath:dubbo/zhkj-provider-service.xml")
 @Import({ApplicationContextUtil.class})
 @ComponentScan({"com.iron.base", "com.zhkj.video"})
 @SpringBootApplication

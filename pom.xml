@@ -75,20 +75,12 @@
 					<artifactId>httpclient</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>org.apache.curator</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
 					<groupId>redis.clients</groupId>
 					<artifactId>jedis</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>io.tus.java.client</groupId>
 					<artifactId>tus-java-client</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.netty</groupId>
-					<artifactId>netty-all</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -134,10 +126,20 @@
     				<groupId>javax.validation</groupId>
     				<artifactId>validation-api</artifactId>
 				</exclusion>
+				<!-- dubbo相关依赖
+				
+				<exclusion>
+					<groupId>io.netty</groupId>
+					<artifactId>netty-all</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.curator</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
 				<exclusion>
 				  	<groupId>org.apache.dubbo</groupId>
   					<artifactId>dubbo-spring-boot-starter</artifactId>
-				</exclusion>
+				</exclusion> -->
 			</exclusions>
 		</dependency>
 		

@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.168.250:5432/test_info?stringtype=unspecified&currentSchema=tuser_info
+    username: postgres
+    password: root@12345
+    driver-class-name: org.postgresql.Driver
+
+
+dubbo:
+  application:
+    id: zhkj-video
+    name: zhkj-video
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  protocol: 
+    port: 22884
+
+video: 
+  file: 
+    old: 
+      path: /data/video/old
+    new: 
+      path: /data/video/new
+      video-name: index
+      image-name: index
+  env: linux
+  command: 
+    video: /data/zhgbdp/video/videoCmd.sh
+    image: /data/zhgbdp/video/imageCmd.sh
+#videoCmd.bat D:\test\ffmpeg -i "%1 " -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  "%2" 
+#imageCmd.bat D:\test\ffmpeg -i "%1 " -s 640x480  -ss 00:00:00 "%2" -vcodec mjpeg  -y
+#videoCmd.sh #!/bin/sh  ffmpeg -i $1 -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  $2 
+#imageCmd.sh #!/bin/sh  ffmpeg -i $1 -s 640x480  -ss 00:00:00 $2 -vcodec mjpeg  -y
