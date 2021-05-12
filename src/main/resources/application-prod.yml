@@ -24,10 +24,15 @@ video:
       video-name: index
       image-name: index
   env: linux
+  corePoolSize: 10
   command: 
     video: /data/zhgbdp/video/videoCmd.sh
     image: /data/zhgbdp/video/imageCmd.sh
 #videoCmd.bat D:\test\ffmpeg -i "%1 " -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  "%2" 
 #imageCmd.bat D:\test\ffmpeg -i "%1 " -s 640x480  -ss 00:00:00 "%2" -vcodec mjpeg  -y
-#videoCmd.sh #!/bin/sh  ffmpeg -i $1 -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  $2 
-#imageCmd.sh #!/bin/sh  ffmpeg -i $1 -s 640x480  -ss 00:00:00 $2 -vcodec mjpeg  -y
+#videoCmd.sh #!/bin/sh  
+#ffmpeg -i $1 -s 640x480  -c:v libx264 -c:a aac -strict -2 -f hls -hls_list_size 0  $2 
+#chmod a+r $3
+#imageCmd.sh #!/bin/sh  
+#ffmpeg -i $1 -s 640x480  -ss 00:00:00 $2 -vcodec mjpeg  -y
+#chmod a+r $3

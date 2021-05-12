@@ -60,6 +60,7 @@ public class VideoDetailHandle implements Runnable {
 			// 创建新目录
 			String needCreatePath = this.newPath + File.separator + this.video.getOldName();
 			File file = new File(needCreatePath);
+			file.setExecutable(true, false);
 			boolean fileFlag = file.mkdirs();// false代表目录已经存在
 			if (fileFlag) {
 				logger.info("创建新目录: id:{} newPath:{}", this.video.getId(), needCreatePath);
@@ -70,13 +71,24 @@ public class VideoDetailHandle implements Runnable {
 			// 拼凑命令
 			String newVideoName = this.video.getOldName() + File.separator + this.videoName + Suffix.VIDEO;
 			this.video.setNewName(newVideoName);
+			String newFilePath = this.newPath + File.separator + this.video.getOldName() + File.separator + "*";//生成文件的目录，linux下设置文件的r权限
 			String newVideoPathName = this.newPath + File.separator + newVideoName;
 			String newImagePathName = this.newPath + File.separator + this.video.getOldName() + File.separator
 					+ this.imageName + Suffix.IMAGE;
-			String videoCommand = String.format(this.videoCommand + " %s %s",
+			String videoCommand = null;
+			String imageCommand = null;
+			if(ENV.WINDOW.equals(this.env)) {
+				videoCommand = String.format(this.videoCommand + " %s %s",
 					this.oldPath + File.separator + this.video.getOldName(), newVideoPathName);
-			String imageCommand = String.format(this.imageCommand + " %s %s",
+				imageCommand = String.format(this.imageCommand + " %s %s",
 					this.oldPath + File.separator + this.video.getOldName(), newImagePathName);
+			}else {
+				//多一步 chmod a+r /xxxx/*
+				videoCommand = String.format(this.videoCommand + " %s %s %s",
+						this.oldPath + File.separator + this.video.getOldName(), newVideoPathName, newFilePath);
+				imageCommand = String.format(this.imageCommand + " %s %s %s",
+						this.oldPath + File.separator + this.video.getOldName(), newImagePathName, newFilePath);
+			}
 
 			logger.info("执行视频命令: id:{} videoCommand:{}", this.video.getId(), videoCommand);
 			logger.info("执行图片命令: id:{} imageCommand:{}", this.video.getId(), imageCommand);
