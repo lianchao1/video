@@ -83,11 +83,11 @@ public class VideoDetailHandle implements Runnable {
 				imageCommand = String.format(this.imageCommand + " %s %s",
 					this.oldPath + File.separator + this.video.getOldName(), newImagePathName);
 			}else {
-				//多一步 chmod a+r /xxxx/*
-				videoCommand = String.format(this.videoCommand + " %s %s %s",
-						this.oldPath + File.separator + this.video.getOldName(), newVideoPathName, newFilePath);
-				imageCommand = String.format(this.imageCommand + " %s %s %s",
-						this.oldPath + File.separator + this.video.getOldName(), newImagePathName, newFilePath);
+				//多一步 chmod
+				videoCommand = String.format(this.videoCommand + " %s %s %s %s",
+						this.oldPath + File.separator + this.video.getOldName(), newVideoPathName, needCreatePath, newFilePath);
+				imageCommand = String.format(this.imageCommand + " %s %s %s %s",
+						this.oldPath + File.separator + this.video.getOldName(), newImagePathName, needCreatePath, newFilePath);
 			}
 
 			logger.info("执行视频命令: id:{} videoCommand:{}", this.video.getId(), videoCommand);
